@@ -20,35 +20,25 @@ int main(int argc, char const *argv[])
     int part2zeroes = 0;
 
     while(getline(f, line)){
-        //std::cout << line << std::endl;
         char dir = line[0];
         int rot = std::stoi(line.substr(1, line.size()-1));
-        if (dir == 'L'){
-            while(rot != 0){
+        while(rot != 0){
+            if (dir == 'L'){
                 dial--;
                 if(dial == -1){
                     dial = 99;
                 }
-                if(dial == 0){
-                    part2zeroes++;
-                }
-                rot--;
-            }
-            //dial = (((dial - rot) % dial_size) + dial_size) % dial_size;
-        }else{
-            while(rot != 0){
+            }else{
                 dial++;
                 if(dial == 100){
                     dial = 0;
                 }
-                if(dial == 0){
-                    part2zeroes++;
-                }
-                rot--;
             }
-            //dial = (((dial + rot) % dial_size) + dial_size) % dial_size;
+            if(dial == 0){
+                part2zeroes++;
+            }
+            rot--;
         }
-        //std::cout << '\t'<< dial << std::endl;
         if(dial == 0){
             zeroes++;
         }
